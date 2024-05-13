@@ -45,7 +45,7 @@ export const Convocation = () => {
             setFilteredConvocations(convocations);
         };
     };
-    
+
     // CALCULATE START AND END INDEX FOR CURRENT PAGE
     const startIndex = (currentPage - 1) * 7;
     const endIndex = currentPage * 7;
@@ -58,70 +58,71 @@ export const Convocation = () => {
     return (
         // RENDER THE CONVOCATIONS
         <Container className="containerData">
-
-            {/* TITLE */}
-            <div className="dataBorder">
-                <div className="dataTitle">Convocatorias</div>
-            </div>
-
-            {/* INPUT SEARCH */}
-            <InputSearch onSearch={handleSearch} />
-
-            {/* TABLE HEADER */}
-            <div className="tableContainerData mt-4">
-                <div className="tableDataRow">
-                    <div className="tableDataHeader">Programa</div>
-                    <div className="tableDataHeader">Inicio</div>
-                    <div className="tableDataHeader">Horarios</div>
-
-                    {/* ONLY SHOW DETAIL IF IS ADMIN */}
-                    {userRole === 1 && (
-                        <div className="tableDataHeader">Detalle</div>
-                    )}
+            <div className="containerDataScroll">
+                {/* TITLE */}
+                <div className="dataBorder">
+                    <div className="dataTitle">Convocatorias</div>
                 </div>
 
-                {/* MAPPING THE CONVOCATIONS */}
-                {filteredConvocations.slice(startIndex, endIndex).map((convocation) => {
-                    return (
-                        <div className="tableDataRow" key={convocation.id}>
-                            <div className="tableDataData">{convocation.program.name}</div>
-                            <div className="tableDataData">{convocation.beginning}</div>
-                            <div className="tableDataData">{convocation.schedule}</div>
+                {/* INPUT SEARCH */}
+                <InputSearch onSearch={handleSearch} />
 
-                            {/* ONLY SHOW DETAIL BUTTON IF IS ADMIN */}
-                            {userRole === 1 && (
-                                <div className="tableDataData">
-                                    <div className="d-flex justify-content-center align-items mt-1 buttonsConvocations">
-                                        <AdminButton
-                                            onClick={() => navigate(`/convodetail/${convocation.id}`)}
-                                            text={"VER"}
-                                        />
+                {/* TABLE HEADER */}
+                <div className="tableContainerData mt-4">
+                    <div className="tableDataRow">
+                        <div className="tableDataHeader">Programa</div>
+                        <div className="tableDataHeader">Inicio</div>
+                        <div className="tableDataHeader">Horarios</div>
+
+                        {/* ONLY SHOW DETAIL IF IS ADMIN */}
+                        {userRole === 1 && (
+                            <div className="tableDataHeader">Detalle</div>
+                        )}
+                    </div>
+
+                    {/* MAPPING THE CONVOCATIONS */}
+                    {filteredConvocations.slice(startIndex, endIndex).map((convocation) => {
+                        return (
+                            <div className="tableDataRow" key={convocation.id}>
+                                <div className="tableDataData">{convocation.program.name}</div>
+                                <div className="tableDataData">{convocation.beginning}</div>
+                                <div className="tableDataData">{convocation.schedule}</div>
+
+                                {/* ONLY SHOW DETAIL BUTTON IF IS ADMIN */}
+                                {userRole === 1 && (
+                                    <div className="tableDataData">
+                                        <div className="d-flex justify-content-center align-items mt-1 buttonsConvocations">
+                                            <AdminButton
+                                                onClick={() => navigate(`/convodetail/${convocation.id}`)}
+                                                text={"VER"}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                            )}
-                        </div>
-                    );
-                })}
-            </div>
-
-            {/* PAGINATION */}
-            {filteredConvocations.length > 7 ? (
-                <div className="d-flex justify-content-center align-items-center mt-4 mb-2">
-                    <PageButton
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        text={'🡰'}
-                        design="left"
-                    />
-                    <div className="numberPage">{currentPage}</div>
-                    <PageButton
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                        disabled={endIndex >= filteredConvocations.length}
-                        text={'🡲'}
-                        design="right"
-                    />
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
-            ) : ''}
+
+                {/* PAGINATION */}
+                {filteredConvocations.length > 7 ? (
+                    <div className="d-flex justify-content-center align-items-center mt-4 mb-2">
+                        <PageButton
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            text={'◁'}
+                            design="left"
+                        />
+                        <div className="numberPage">{currentPage}</div>
+                        <PageButton
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={endIndex >= filteredConvocations.length}
+                            text={'▷'}
+                            design="right"
+                        />
+                    </div>
+                ) : ''}
+            </div>
         </Container>
     );
 };

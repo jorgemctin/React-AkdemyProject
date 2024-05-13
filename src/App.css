@@ -28,8 +28,17 @@
 .containerData {
   position: fixed;
   top: 3em;
+  padding: 0;
+}
+
+.containerDataScroll {
+  padding: 0.5em;
   overflow-y: auto;
   max-height: calc(100vh - 3em);
+}
+
+.containerDataScroll::-webkit-scrollbar {
+  display: none;
 }
 
 .dataTitle {

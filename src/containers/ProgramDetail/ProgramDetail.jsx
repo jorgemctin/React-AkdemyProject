@@ -54,9 +54,9 @@ export const ProgramDetail = () => {
 
                     {/* BUTTON TO GO TO REQUEST INSCRIPTION */}
                     <div className="mt-3 buttonsDetailPage">
-                        <div className="arrowButtonDetail" onClick={() => handleNavigateProgram(-1)}>🡰</div>
+                        <div className="arrowButtonDetail" onClick={() => handleNavigateProgram(-1)}>◁</div>
                         <AkdemyButton onClick={handleClick} text={"Solicitar Inscripción"} />
-                        <div className="arrowButtonDetail" onClick={() => handleNavigateProgram(1)}>🡲</div>
+                        <div className="arrowButtonDetail" onClick={() => handleNavigateProgram(1)}>▷</div>
                     </div>
                 </>
             ) : (

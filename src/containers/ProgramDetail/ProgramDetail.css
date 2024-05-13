@@ -32,12 +32,14 @@
 }
 
 .arrowButtonDetail{
+    font-weight: bold;
     border-radius: 0.5em;
     cursor: pointer;
     margin: 0 1em;
-    height: 1.7em;
-    width: 1.7em;
+    height: 1.8em;
+    width: 1.8em;
     border: solid 0.1em green;
+    font-size: 1.2em;
     text-shadow: 0.04em 0.04em 0.04em #59fb44c3;
     color: #d35501;
     box-shadow:

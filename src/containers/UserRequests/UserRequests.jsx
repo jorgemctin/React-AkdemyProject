@@ -65,68 +65,70 @@ export const UserRequests = () => {
 
     return (
         <Container className="containerData">
-            {/* TITLE */}
-            <div className="dataBorder">
-                <div className="dataTitle">Solicitudes</div>
-            </div>
-
-            {/* INPUT SEARCH */}
-            <InputSearch onSearch={handleSearch} />
-
-            {/* DATA REQUEST */}
-            <div className="tableContainerData mt-4">
-                <div className="tableDataRow">
-                    <div className="tableDataHeader">Nombre</div>
-                    <div className="tableDataHeader">Email</div>
-                    <div className="tableDataHeader">Curso</div>
-                    <div className="tableDataHeader">Inicio</div>
-                    <div className="tableDataHeader">Aceptar</div>
+            <div className="containerDataScroll">
+                {/* TITLE */}
+                <div className="dataBorder">
+                    <div className="dataTitle">Solicitudes</div>
                 </div>
 
-                {/* MAPPING USER REQUEST */}
-                {filteredRequestUsers.slice(startIndex, endIndex).map((request) => {
-                    if (!acceptedRequests.includes(request.id)) {
-                        return (
-                            <div className="tableDataRow" key={request.id}>
-                                <div className="tableDataData">{request.user.name} {request.user.surname}</div>
-                                <div className="tableDataData">{request.user.email}</div>
-                                <div className="tableDataData">{request.program.name}</div>
-                                <div className="tableDataData">{request.convocation.beginning}</div>
+                {/* INPUT SEARCH */}
+                <InputSearch onSearch={handleSearch} />
 
-                                {/* ADMIN BUTTON TO ACCEPT REQUEST */}
-                                <div className="tableDataData">
-                                    <AdminButton
-                                        onClick={() => {
-                                            handleAcceptRequest(request.id);
-                                        }}
-                                        text={"✔"}
-                                    />
+                {/* DATA REQUEST */}
+                <div className="tableContainerData mt-4">
+                    <div className="tableDataRow">
+                        <div className="tableDataHeader">Nombre</div>
+                        <div className="tableDataHeader">Email</div>
+                        <div className="tableDataHeader">Curso</div>
+                        <div className="tableDataHeader">Inicio</div>
+                        <div className="tableDataHeader">Aceptar</div>
+                    </div>
+
+                    {/* MAPPING USER REQUEST */}
+                    {filteredRequestUsers.slice(startIndex, endIndex).map((request) => {
+                        if (!acceptedRequests.includes(request.id)) {
+                            return (
+                                <div className="tableDataRow" key={request.id}>
+                                    <div className="tableDataData">{request.user.name} {request.user.surname}</div>
+                                    <div className="tableDataData">{request.user.email}</div>
+                                    <div className="tableDataData">{request.program.name}</div>
+                                    <div className="tableDataData">{request.convocation.beginning}</div>
+
+                                    {/* ADMIN BUTTON TO ACCEPT REQUEST */}
+                                    <div className="tableDataData">
+                                        <AdminButton
+                                            onClick={() => {
+                                                handleAcceptRequest(request.id);
+                                            }}
+                                            text={"✔"}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    }
-                    return '';
-                })}
-            </div>
-
-            {/* PAGINATION */}
-            {filteredRequestUsers.length > 7 ? (
-                <div className="d-flex justify-content-center align-items-center mt-4 mb-3">
-                    <PageButton
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        text={'🡰'}
-                        design="left"
-                    />
-                    <div className="numberPage">{currentPage}</div>
-                    <PageButton
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                        disabled={endIndex >= filteredRequestUsers.length}
-                        text={'🡲'}
-                        design="right"
-                    />
+                            );
+                        }
+                        return '';
+                    })}
                 </div>
-            ) : ''}
+
+                {/* PAGINATION */}
+                {filteredRequestUsers.length > 7 ? (
+                    <div className="d-flex justify-content-center align-items-center mt-4 mb-3">
+                        <PageButton
+                            onClick={() => setCurrentPage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            text={'◁'}
+                            design="left"
+                        />
+                        <div className="numberPage">{currentPage}</div>
+                        <PageButton
+                            onClick={() => setCurrentPage(currentPage + 1)}
+                            disabled={endIndex >= filteredRequestUsers.length}
+                            text={'▷'}
+                            design="right"
+                        />
+                    </div>
+                ) : ''}
+            </div>
         </Container>
     );
 };

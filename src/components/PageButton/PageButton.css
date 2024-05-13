@@ -1,9 +1,9 @@
 .pageButton {
     background-color: #219b27fd;
     color: #ffffff;
-    padding: 0.3em 0.3em;
+    padding: 0.13em 0.3em 0.17em;
     border: 0.01em solid rgb(9, 71, 9);
-    font-size: 1em;
+    font-size: 1.2em;
     cursor: pointer;
     transition: box-shadow 0.2s ease;
     box-shadow:
@@ -27,4 +27,5 @@
 
 .pageLeft {
     border-radius: 1em 0 0 1em;
+    text-shadow: -0.05em 0.05em 0.06em rgba(0, 0, 0, 0.5);
 }

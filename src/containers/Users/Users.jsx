@@ -14,7 +14,7 @@ export const Users = () => {
   //GO TO FIRST PAGE WHEN SEARCH START
   useEffect(() => {
     setCurrentPage(1);
-}, [searchText]);
+  }, [searchText]);
 
   //HANDLER SEARCH
   const handleSearch = (text) => {
@@ -44,54 +44,56 @@ export const Users = () => {
   return (
     //RENDER USERS
     <Container className="containerData">
+      <div className="containerDataScroll">
 
-      {/* USERS TITLE */}
-      <div className="dataBorder">
-        <div className="dataTitle">Usuarios</div>
-      </div>
-
-
-      {/* INPUT SEARCH */}
-      <InputSearch onSearch={handleSearch} />
-
-      <div className="tableContainerData mt-4">
-        <div className="tableDataRow">
-
-          {/* USERS TABLE */}
-          <div className="tableDataHeader">Nombre</div>
-          <div className="tableDataHeader">Email</div>
+        {/* USERS TITLE */}
+        <div className="dataBorder">
+          <div className="dataTitle">Usuarios</div>
         </div>
 
 
-        {/* MAPPING USER DATA */}
-        {filteredUsers.slice(startIndex, endIndex).map((user) => {
-          return (
-            <div className="tableDataRow" key={user.id}>
-              <div className="tableDataData">{user.name} {user.surname}</div>
-              <div className="tableDataData">{user.email}</div>
-            </div>
-          )
-        })}
-      </div>
+        {/* INPUT SEARCH */}
+        <InputSearch onSearch={handleSearch} />
 
-      {/* PAGINATION */}
-      {filteredUsers.length > 7 ? (
-        <div className="d-flex justify-content-center align-items-center mt-4 mb-2">
-          <PageButton
-            onClick={() => setCurrentPage(currentPage - 1)}
-            disabled={currentPage === 1}
-            text={'🡰'}
-            design="left"
-          />
-          <div className="numberPage">{currentPage}</div>
-          <PageButton
-            onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={endIndex >= filteredUsers.length}
-            text={'🡲'}
-            design="right"
-          />
+        <div className="tableContainerData mt-4">
+          <div className="tableDataRow">
+
+            {/* USERS TABLE */}
+            <div className="tableDataHeader">Nombre</div>
+            <div className="tableDataHeader">Email</div>
+          </div>
+
+
+          {/* MAPPING USER DATA */}
+          {filteredUsers.slice(startIndex, endIndex).map((user) => {
+            return (
+              <div className="tableDataRow" key={user.id}>
+                <div className="tableDataData">{user.name} {user.surname}</div>
+                <div className="tableDataData">{user.email}</div>
+              </div>
+            )
+          })}
         </div>
-      ) : ''}
+
+        {/* PAGINATION */}
+        {filteredUsers.length > 7 ? (
+          <div className="d-flex justify-content-center align-items-center mt-4 mb-2">
+            <PageButton
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+              text={'◁'}
+              design="left"
+            />
+            <div className="numberPage">{currentPage}</div>
+            <PageButton
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={endIndex >= filteredUsers.length}
+              text={'▷'}
+              design="right"
+            />
+          </div>
+        ) : ''}
+      </div>
     </Container>
   );
 };
